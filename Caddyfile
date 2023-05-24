@@ -1,0 +1,14 @@
+localhost {
+	# basicauth {
+	# 	<username> <hash>
+	# }
+
+	reverse_proxy website:8080
+
+	@odyssey {
+		header Connection *Upgrade*
+		header Upgrade websocket
+	}
+
+	reverse_proxy @odyssey odyssey:4000
+}
